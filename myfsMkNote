@@ -1,0 +1,30 @@
+
+=============================busybox config====================================
+1.  cp fa.config .config
+    git add -f .config
+    git commit -a 
+2.  CROSS_COMPILE ?= arm-linux-
+    ARCH ?= arm
+
+if host make is new version, need modify old style script as new style:
+such as:
+A.
+OLD STYLE>>>>>
+  config %config:dependecy
+ 	cmd
+  modify to below:
+NEW STYLE>>>>>
+   config:dependecy
+       cmd
+   %config:dependecy
+       cmd
+B.
+OLD STYLE>>>>>
+  / %/: dependecy
+ 	cmd
+  modify to below:
+NEW STYLE>>>>>
+  /:dependecy
+       cmd
+ %/:dependecy
+       cmd
