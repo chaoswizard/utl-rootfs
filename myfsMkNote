@@ -28,3 +28,5 @@ NEW STYLE>>>>>
        cmd
  %/:dependecy
        cmd
+
+3.  add bash script for make dirs :mk_myrootfs.sh 
