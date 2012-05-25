@@ -74,6 +74,7 @@ echo "-------make direction done---------"
 
 c. 改变执行的权限
  chmod 777 mkrootfs.sh
+ ./mkrootfs.sh
 
 d. make  menuconfig
 [A]指定安装位置：
@@ -100,7 +101,45 @@ Linux System Utilities --->
 （2）使用 devfs 文件系统：这种方法已经过时，具有不确定的设备映射、没有足够的主/次设备号、devfs 消耗大量的内存。  
 （3）udev： 它是个用户程序，（u是指user space ,dev 是指device）能根据系统中硬件设备的状态动态的更新设备文件，包括设备文件的创建、删除等。使用udev机制也不需要/dev目录下创建设备节点， 它需要一些用户程序的支持，并且内核要支持sysfs文件系统。它的操作相对复杂，但灵活性很高 。mdev 是 busybox 自带的一个简化版的 udev，适合于嵌入式的应用埸合。其具有使用简单的特点。它的作用，就是在系统启动和热插拔或动态加载驱动程序时，自动产生驱动程序所需的节点文件。在以busybox 为基础构建嵌入式linux 的根文件系统时，使用它是最优的选择。配置时需要增加对 mdev的支持。 
 
- 
+4、编译Busybox
+
+make
+
+5、安装Busybox
+
+make uninstall
+
+make CONFIG_PREFIX=/work/nfs_root/fs_mini install
+
+在work/nfs_root/下面自动生成fs_mini目录，并且在此目录下生成一些文件、目录。
+
+6、安装glibc
+
+cd /work/nfs_root/fs_mini
+
+mkdir lib
+
+cd /work/tools/gcc-3.4.5-glibc-2.3.6/arm-linux/lib
+
+cp *.so* /work/nfs_root/fs_mini/lib 
+
+通过以下命令查看一个程序会用到哪些库？
+
+arm-linux-readelf -a "your binary" | grep "share" 
+
+grep与"share"间记得要空格 
+
+例如：
+
+root@huanghuang-desktop:/work/busybox-1.9.2# arm-linux-readelf -a busybox | grep "Shared"
+0x00000001 (NEEDED) Shared library: [libcrypt.so.1]
+0x00000001 (NEEDED) Shared library: [libm.so.6]
+0x00000001 (NEEDED) Shared library: [libc.so.6]
+加载器是.so、so.2结尾的。。
+
+从上面的信息可以看出没有加载器。
+
+
 
 
 
