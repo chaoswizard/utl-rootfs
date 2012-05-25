@@ -1,7 +1,7 @@
 #!/bin/sh
-echo "------Create my_rootfs directons start...--------"
-mkdir my_rootfs
-cd my_rootfs
+echo "------Create myfs_top_dir directons start...--------"
+mkdir myfs_top_dir
+cd myfs_top_dir
 echo "--------Create root,dev....----------"
 mkdir root dev etc boot tmp var sys proc lib mnt home usr
 mkdir etc/init.d etc/rc.d etc/sysconfig
