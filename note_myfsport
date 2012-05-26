@@ -72,9 +72,17 @@ chmod 1777 tmp
 chmod 1777 var/tmp
 echo "-------make direction done---------" 
 
+
+
+
 c. 改变执行的权限
  chmod 777 mkrootfs.sh
  ./mkrootfs.sh
+
+tree -aps >.demo_fs_snapshot 
+
+
+
 //==============================================================================
 d. make  menuconfig
 [A]指定安装位置：
