@@ -1,6 +1,5 @@
 # /etc/inittab
-#id:runlevels:action:process 
 ::sysinit:/etc/init.d/rcS
-ttySAC0::askfirst:-/bin/sh
+s3c2410_serial0::askfirst:-/bin/sh
 ::ctrlaltdel:/sbin/reboot
 ::shutdown:/bin/umount -a -r
