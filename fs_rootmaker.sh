@@ -1,7 +1,37 @@
 #!/bin/sh
-echo "------Create myfs_top_dir directons start...--------"
-mkdir myfs_top_dir
-cd myfs_top_dir
+
+#print the parameters string
+echo "param num: $# in:"
+
+for arg in "$*"
+do
+echo $arg
+done
+
+#print the parameters array
+echo "parameter array:"
+
+for arg in "$@"
+do
+echo $arg
+done
+
+
+#cmd with  param
+if [ x$1 != x ]
+then
+	my_rootfs=$1
+else
+	my_rootfs="myfs_top_dir"
+fi
+
+
+
+
+echo "------Create ${my_rootfs} directons start...--------"
+mkdir ${my_rootfs}
+cd ${my_rootfs}
+
 echo "--------Create root,dev....----------"
 mkdir root dev etc boot tmp var sys proc lib mnt home usr
 mkdir etc/init.d etc/rc.d etc/sysconfig
