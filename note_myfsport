@@ -144,6 +144,11 @@ root@huanghuang-desktop:/work/busybox-1.9.2# arm-linux-readelf -a busybox | grep
 
 这里只需要创建3个文件即可：etc/inittab、etc/init.d/rcS、etc/fstab。
 
+Linux在完成核内引导以后，就开始运行init程序，。
+init程序需 要读取配置文件/etc/inittab
+inittab是一个不可执行的文本文件，它有若干行指令所组成。
+
+
 root@huanghuang-desktop:/work/nfs_root/fs_mini# mkdir etc
 
 root@huanghuang-desktop:/work/nfs_root/fs_mini# ls
