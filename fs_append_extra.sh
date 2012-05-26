@@ -1,3 +1,14 @@
 #!/bin/sh
-echo "install  glibc to rootfs"
-cp /usr/local/arm/4.4.3/lib/*.so* myfs_top_dir/lib
+
+#cmd with  param atleast is 1 and is a valid path.
+if [ -d $1 ] && [ $# -ge 1 ]
+then
+my_rootfs=$1
+else
+echo "usage: $0 valid dir which existed"
+# Will exit with status of last command.
+exit $?
+fi
+
+echo "install  glibc to $(my_rootfs)"
+cp /usr/local/arm/4.4.3/lib/*.so* $(my_rootfs)/lib
