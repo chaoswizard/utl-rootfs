@@ -177,6 +177,7 @@ ttySAC0::askfirst:-/bin/sh
 ::ctrlaltdel:/sbin/reboot
 ::shutdown:/bin/umount -a -r
 
+==============================================================================
 2、创建一个脚本文件/etc/init.d/rcS,
 
 root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# mkdir init.d
@@ -189,12 +190,16 @@ root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# gedit rcS
 ifconfig eth0 172.22.136.38
 mount -a
 
+
 root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# chmod +x rcS
 
 root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# ls -l
 总计 8
 -rwxr-xr-x 1 root root 47 2009-12-11 21:27 rcS
 -rw-r--r-- 1 root root 47 2009-12-11 21:27 rcS~
+
+===== mount -a : 挂载fstab下的所有选项=======================================
+
 3、创建etc/fstab，来定义文件系统的“静态信息”，这些信息来控制mount的行为。
 
 root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# gedit fstab
