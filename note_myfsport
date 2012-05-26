@@ -75,7 +75,7 @@ echo "-------make direction done---------"
 c. 改变执行的权限
  chmod 777 mkrootfs.sh
  ./mkrootfs.sh
-
+//==============================================================================
 d. make  menuconfig
 [A]指定安装位置：
 
@@ -104,7 +104,7 @@ Linux System Utilities --->
 4、编译Busybox
 
 make
-
+//==============================================================================
 5、安装Busybox
 
 make uninstall
@@ -112,7 +112,7 @@ make uninstall
 make CONFIG_PREFIX=/work/nfs_root/fs_mini install
 
 在work/nfs_root/下面自动生成fs_mini目录，并且在此目录下生成一些文件、目录。
-
+//==============================================================================
 6、安装glibc
 
 cd /work/nfs_root/fs_mini
@@ -138,6 +138,56 @@ root@huanghuang-desktop:/work/busybox-1.9.2# arm-linux-readelf -a busybox | grep
 加载器是.so、so.2结尾的。。
 
 从上面的信息可以看出没有加载器。
+
+//=======================================================================================
+在etc目录下的内容主要取决于要运行的程序，
+
+这里只需要创建3个文件即可：etc/inittab、etc/init.d/rcS、etc/fstab。
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini# mkdir etc
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini# ls
+bin etc lib linuxrc sbin usr
+
+1、仿照Busybox的examples/inittab，创建etc/inittab
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini# cd etc
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# gedit inittab
+
+# /etc/inittab
+::sysinit:/etc/init.d/rcS
+ttySAC0::askfirst:-/bin/sh
+::ctrlaltdel:/sbin/reboot
+::shutdown:/bin/umount -a -r
+
+2、创建一个脚本文件/etc/init.d/rcS,
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# mkdir init.d
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# cd init.d
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# ls
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# gedit rcS
+
+#!/bin/sh
+ifconfig eth0 172.22.136.38
+mount -a
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# chmod +x rcS
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc/init.d# ls -l
+总计 8
+-rwxr-xr-x 1 root root 47 2009-12-11 21:27 rcS
+-rw-r--r-- 1 root root 47 2009-12-11 21:27 rcS~
+3、创建etc/fstab，来定义文件系统的“静态信息”，这些信息来控制mount的行为。
+
+root@huanghuang-desktop:/work/nfs_root/fs_mini/etc# gedit fstab
+
+#device mount-point type options dump fsck order
+proc /proc proc defaults 0 0
+tmpfs /tmp tmpfs defaults 0 0
+
+
 
 
 
