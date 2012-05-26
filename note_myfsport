@@ -145,9 +145,20 @@ root@huanghuang-desktop:/work/busybox-1.9.2# arm-linux-readelf -a busybox | grep
 这里只需要创建3个文件即可：etc/inittab、etc/init.d/rcS、etc/fstab。
 
 Linux在完成核内引导以后，就开始运行init程序，。
+//----------------------------------------------------------------------------
 init程序需 要读取配置文件/etc/inittab
 inittab是一个不可执行的文本文件，它有若干行指令所组成。
+//------------------------------------------------------------------------------
+由于init=/linuxrc，因此，在文件系统挂载后，运行的第一个程序就是根目录下的linuxrc，而这是一个指向/bin/busybox 的链接，也就是说，系统起来后运行的第一个程序就是busybox本身。                  
+        busybox首先将试图解析/etc/inittab来获取进一步的初始化配置信息（参考busybox源代码init/init.c中的parse_inittab()函数）。而事实上，root_qtopia中并没有/etc/inittab这个配置文件，根据busybox的裸机，它将生成默认的配置。其中最重要的一个，就是new_init_action(SYSINIT,INIT_SCRIPT,""),也就决定了接下来初始化的脚本是INIT_SCRIPT所定义的值，这个宏的默认值是"etc/init.d/rcS"。
 
+
+[root@1001 busybox-1.13.3]# grep -r INIT_SCRIPT  ./
+
+=========================== thatis why bootargs is config init=rcS
+
+
+//------------------------------------------------------------------------------
 
 root@huanghuang-desktop:/work/nfs_root/fs_mini# mkdir etc
 
