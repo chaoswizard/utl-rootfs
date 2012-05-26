@@ -287,6 +287,10 @@ bin dev etc lib linuxrc mnt proc root sbin sys tmp usr
 后面我们要把它烧入开发板，还要将它制作成一个映象文件。
 
 
+rm -rf rootfs_qtopia_qt4/usr/local/Trolltech
+rm -rf rootfs_qtopia_qt4/opt
+
+
 
 
 
