@@ -15,6 +15,8 @@ sudo mknod -m 666 dev/null c 1 3
 将刚才在busybox的_install下的三个文件夹的打包文件复制到rootfs目录，解压后删除打包文件。
 $ tar xvf bbfs.tar 
 $ rm bbfs.tar 
+#10  download cramfs source and make
+11 mkcramfs rootfs s3c2440.cramfs
 
 
 
