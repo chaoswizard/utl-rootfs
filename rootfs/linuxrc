@@ -1,0 +1,12 @@
+#!/bin/sh
+echo "mount /etc as ramfs"
+/bin/mount -f -t cramfs -o remount,ro /dev/bon/2 /
+/bin/mount -t ramfs ramfs /var
+/bin/mkdir -p /var/tmp
+/bin/mkdir -p /var/run
+/bin/mkdir -p /var/log
+/bin/mkdir -p /var/lock
+/bin/mkdir -p /var/empty
+#/bin/mount -t usbdevfs none /proc/bus/usb
+exec /sbin/init
+
