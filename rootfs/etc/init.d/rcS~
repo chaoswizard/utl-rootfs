@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# mount all filesystem defined in "fstab"
+echo "#mount all......."
+/bin/mount -a
+
+
