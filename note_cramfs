@@ -2,5 +2,7 @@ pwd is busy-box-src dir.
 1 make install
 2 tar cvf bbfs.tar  ./_install
 3 ./fs_make_rootfs.sh  rootfs
-4 chmod -R 777 rootfs  
+#4 chmod -R 777 rootfs  
+5 touch linuxrc  etc/init.d/rcS  etc/inittab etc/fstab
+
 
