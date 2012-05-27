@@ -5,5 +5,12 @@ pwd is busy-box-src dir.
 #4 chmod -R 777 rootfs  
 5 touch linuxrc  etc/init.d/rcS  etc/inittab etc/fstab
 6 chmod 775 linuxrc etc/init.d/rcS
+7 add configure
+8  创建节点console、null
+否则就会提示“Warning: unable to open an initial console. Kernel panic - not syncing: Attempted to kill init!”的类似错误。
+创建时，必须以root身份才可以
+sudo mknod -m 600 dev/console c 5 1
+sudo mknod -m 666 dev/null c 1 3
+
 
 
