@@ -146,7 +146,7 @@ root@huanghuang-desktop:/work/busybox-1.9.2# arm-linux-readelf -a busybox | grep
 
 从上面的信息可以看出没有加载器。
 
-OR: ldd busybox
+OR: ldd busybox (x86)
 
    linux-gate.so.1 =>  (0x00137000) 
     libm.so.6 => /lib/tls/i686/cmov/libm.so.6 (0x009ce000) 
