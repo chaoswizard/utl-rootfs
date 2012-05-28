@@ -6,5 +6,11 @@
 #ln -s bin/busybox init 
 这样就为busybox创建了一个软链接init，这个文件就是我们要创建的init文件。
 
+另外就是我们制作ramdisk根文件系统镜像的时候使用的是genext2fs工具，在此我们制作initramfs根文件系统镜像时，并不需要额外的步骤，而是在你编译Linux内核的时候就自动生成了。自动生成的initramfs根文件系统镜像在Linux源码树的usr目录下。名字叫initramfs_data.cpio.gz，它是gz格式的压缩文件。
+
+这样就有一个问题，在编译可以使用initramfs启动的内核的时候，它的配置选项有一个相关项，就是要在(/work/rootfs) Initramfs source file(s)中填写你要制作成initramfs格式的根文件系统目录。这样就要求我们在编译内核的时候，首先先把根文件系统做好。值得注意的是我们按照这个方法制作出来的内核镜像实际上比原来的大了许多，这是因为我们在做这一步的时候，实际上是将initramfs根文件系统直接合并到内核镜像里边了。这样，合二为一的镜像就不再需要单独烧写根文件系统镜像了，相应的，启动内核时的参数就不需要添加initrd=……来指定initramfs的位置了。当然如果你不想将initramfs合并到内核中，直接用配置ramdisk的内核来启动系统即可，不过这时你就必须使用initrd=……来指定initramfs的位置了，并且第二个参数initramfs根文件系统映像的大小必须指定为实际大小，否则提示映像校验错误，无法启动系统。
+
+
+
 
 
