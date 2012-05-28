@@ -1,0 +1,10 @@
+
+制作最小系统根文件系统的步骤和以前制作ramdisk根文件系统的步骤基本一致，这里只说明最后一步有何不同。
+因为initramfs根文件系统启动时执行的第一个程序是init，而不是linuxrc，所以在此，我们制作的根文件系统需要添加一个init文件，相应的linuxrc文件就不再需要了。
+按照如下方式修改根文件系统
+#cd /work/rootfs
+#ln -s bin/busybox init 
+这样就为busybox创建了一个软链接init，这个文件就是我们要创建的init文件。
+
+
+
