@@ -1,0 +1,33 @@
+.
+├── boot
+├── dev
+│   ├── console
+│   └── null
+├── etc
+│   ├── init.d
+│   ├── rc.d
+│   └── sysconfig
+├── home
+├── lib
+├── mnt
+│   ├── data
+│   ├── etc
+│   ├── jffs2
+│   ├── temp
+│   └── yaffs
+├── proc
+├── root
+├── sys
+├── tmp
+├── usr
+│   ├── bin
+│   ├── lib
+│   ├── modules
+│   └── sbin
+└── var
+    ├── lib
+    ├── lock
+    ├── run
+    └── tmp
+
+28 directories, 2 files
