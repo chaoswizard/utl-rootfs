@@ -1,0 +1,42 @@
+
+制作ramdisk根文件系统镜像
+方法如下：
+上http://genext2fs.sourceforge.net/下载可以简单方便的制作ramdisk文件系统的工具genext2fs，这样就不用像网上大多数说的那样繁琐的制作ramdisk映像了，当前最新版本为genext2fs-1.4.1.tar.gz 。
+编译生成该工具genext2fs，并将其放入宿主机的/sbin/目录下以方便使用。
+跳转到要制作的rootfs的上一级目录
+#genext2fs -b 4096 -d rootfs ramdisk
+-b是指制作的ramdisk大小为4096K字节
+-d是指要制作成ramdisk的根文件系统目录
+最后的ramdisk是制作出来的ramdisk的名字，当然可以改名了。
+#gzip -9 -f ramdisk
+将该ramdisk以最优方式压缩为ramdisk.gz
+
+下载内核映像和ramdisk映像
+
+]# tftp 0x32000000 uImage-ramdisk
+]# tftp 0x31000000 ramdisk.gz
+]# bootm 0x32000000
+//=============================================================================
+
+由于最小系统里的etc配置文件没有写自动启动网卡的脚本，所以我做的ramdisk开始时并不能自动启动网卡。后来参照友善之臂的root_qtopia根文件系统里的脚本做如下修改，即可自动启动脚本。
+修改如下：
+修改要制作的ramdisk根文件系统的rootfs下的/etc/init.d/rcS文件
+在最下边添加如下两行命令即可自动启动网卡：
+/sbin/ifconfig lo 127.0.0.1
+/sbin/ifconfig eth0 192.168.31.230 netmask 255.255.255.0 up
+
+
+//=============================================================================
+另外可以使用以下方法把kernel和ramdisk都烧写到nand flash中，修改bootcmd，这样u-boot就可以自动启动该系统了。以下仅仅是方法，没有具体说明。大家可以自己做一下。
+
+####################################################################
+u-boot# tftp 0x32000000 uImage
+u-boot# nand erase 0x00200000 0x200000
+u-boot# nand write 0x32000000 0x00200000 0x00200000
+u-boot# setenv bootcmd nand read 0x32000000 0x00200000 0x00200000\;bootm 0x30008000
+u-boot# boot
+注意 0x200000 是2M之内的内核 若你的内核大于2M则把 0x200000 换成 0x300000 （比如说内核大小在3M内）
+其实就是uboot中使用 bootm 命令启动 uImage 格式的内核的方法。
+
+
+
