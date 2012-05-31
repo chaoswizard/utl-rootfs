@@ -1,0 +1,34 @@
+.
+├── [drwxr-xr-x      4096]  ./boot
+├── [drwxr-xr-x      4096]  ./dev
+│   ├── [crw-------         0]  ./dev/console
+│   └── [crw-------         0]  ./dev/null
+├── [-rw-r--r--         0]  ./.distrees
+├── [drwxr-xr-x      4096]  ./etc
+│   ├── [drwxr-xr-x      4096]  ./etc/init.d
+│   ├── [drwxr-xr-x      4096]  ./etc/rc.d
+│   └── [drwxr-xr-x      4096]  ./etc/sysconfig
+├── [drwxr-xr-x      4096]  ./home
+├── [drwxr-xr-x      4096]  ./lib
+├── [drwxr-xr-x      4096]  ./mnt
+│   ├── [drwxr-xr-x      4096]  ./mnt/data
+│   ├── [drwxr-xr-x      4096]  ./mnt/etc
+│   ├── [drwxr-xr-x      4096]  ./mnt/jffs2
+│   ├── [drwxr-xr-x      4096]  ./mnt/temp
+│   └── [drwxr-xr-x      4096]  ./mnt/yaffs
+├── [drwxr-xr-x      4096]  ./proc
+├── [drwxr-xr-x      4096]  ./root
+├── [drwxr-xr-x      4096]  ./sys
+├── [drwxrwxrwt      4096]  ./tmp
+├── [drwxr-xr-x      4096]  ./usr
+│   ├── [drwxr-xr-x      4096]  ./usr/bin
+│   ├── [drwxr-xr-x      4096]  ./usr/lib
+│   ├── [drwxr-xr-x      4096]  ./usr/modules
+│   └── [drwxr-xr-x      4096]  ./usr/sbin
+└── [drwxr-xr-x      4096]  ./var
+    ├── [drwxr-xr-x      4096]  ./var/lib
+    ├── [drwxr-xr-x      4096]  ./var/lock
+    ├── [drwxr-xr-x      4096]  ./var/run
+    └── [drwxrwxrwt      4096]  ./var/tmp
+
+28 directories, 3 files
