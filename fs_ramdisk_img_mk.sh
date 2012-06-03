@@ -29,6 +29,7 @@ echo "make  ${my_rootfs} to ramdisk image: ${mytmp_fsimg}"
 ./genext2fs-1.4.1/genext2fs -b 4096  -d  ${my_rootfs}  ${mytmp_fsimg}
 
 echo "compress  ${mytmp_fsimg} to : ${myfsimg}"
+rm -f  ${myfsimg}
 gzip -9 -f ${mytmp_fsimg}
 rm -f  ${mytmp_fsimg}
 
