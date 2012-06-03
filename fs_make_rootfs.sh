@@ -20,7 +20,7 @@ done
 #cmd with  param
 if [ x$1 != x ]
 then
-	my_rootfs=$1
+	my_rootfs=`echo $1 | tr -d "/"`
 else
 	my_rootfs="myfs_top_dir"
 fi

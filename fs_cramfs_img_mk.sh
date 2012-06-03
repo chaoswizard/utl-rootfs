@@ -3,7 +3,7 @@
 #cmd with  param atleast is 1 and is a valid path.
 if [ -d $1 ] && [ $# -ge 1 ]
 then
-my_rootfs="$1"
+my_rootfs=`echo $1 | tr -d "/"`
 else
 echo "usage: $0 valid dir which existed"
 # Will exit with status of last command.
